@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class BankTest 
@@ -63,6 +65,17 @@ public class BankTest
 		
 		transactionFrame.add(controlPanel);
 		transactionFrame.pack();
+		transactionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		transactionFrame.setVisible(true);
+		
+		//all the stuff for the test frame
+		JFrame testFrame = new JFrame();
+		final JTextArea textArea = new JTextArea(10, 30);
+		textArea.setEditable(false);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		testFrame.add(scrollPane);
+		textArea.append("Beginning Balance: "         
+		+ String.format("$%,1.2f%n%n", account.getBalance( )));
 		
 	}
 	
