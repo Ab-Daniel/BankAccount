@@ -17,8 +17,9 @@ public class BankTest
 		
 		final BankAccount account = new BankAccount(INITIAL_BALANCE);
 		
-		JLabel amountLabel = new JLabel();
+		JLabel amountLabel = new JLabel("Amount: ");
 		final JTextField amountField = new JTextField(10);
+		final JTextArea textArea = new JTextArea(10, 30);
 		
 		//all the stuff for the transaction frame
 		JFrame transactionFrame = new JFrame("Transaction Window");
@@ -34,7 +35,8 @@ public class BankTest
 				
 				double amount = Double.parseDouble(amountField.getText( ));
 				account.withdraw(amount);
-				
+				textArea.append("Withdraw: " + (String.format("$%,1.2f%n", amount)));
+				textArea.append("Balance: " + (String.format("$%,1.2f%n%n", account.getBalance( ))));
 			}
 			
 		}
@@ -50,6 +52,8 @@ public class BankTest
 				
 				double amount = Double.parseDouble(amountField.getText());
 				account.deposit(amount);
+				textArea.append("Deposit: " + (String.format("$%,1.2f%n", amount)));
+				textArea.append("Balance" + (String.format("$%,1.2f%n%n", account.getBalance( ))));
 				
 			}
 			
@@ -70,12 +74,12 @@ public class BankTest
 		
 		//all the stuff for the test frame
 		JFrame testFrame = new JFrame();
-		final JTextArea textArea = new JTextArea(10, 30);
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		testFrame.add(scrollPane);
 		textArea.append("Beginning Balance: "         
 		+ String.format("$%,1.2f%n%n", account.getBalance( )));
+		testFrame.add(scrollPane);
+		testFrame.setVisible(true);
 		
 	}
 	
